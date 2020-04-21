@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:scrollbars="vertical"
+        android:paddingTop="10dp"
+        tools:context=".MainActivity">
+
+        <Button
+            android:id="@+id/buttonDown"
+            android:layout_width="96dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="90dp"
+            android:layout_marginEnd="235dp"
+            android:text="↓"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonCopyBV"
+            android:layout_width="96dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="285dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:text="复制"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonCopyAV"
+            android:layout_width="96dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="285dp"
+            android:layout_marginTop="170dp"
+            android:layout_marginEnd="30dp"
+            android:text="复制"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonUP"
+            android:layout_width="96dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="235dp"
+            android:layout_marginTop="90dp"
+            android:layout_marginEnd="80dp"
+            android:text="↑"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+<com.google.android.material.textfield.TextInputLayout
+    android:layout_width="240dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="30dp"
+    android:layout_marginTop="-10dp"
+    android:layout_marginEnd="141dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <EditText
+        android:id="@+id/editBV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-5dp"
+        android:hint="请输入BV号"
+        android:ems="10"
+        android:inputType="textPersonName"
+/>
+</com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="160dp"
+            android:layout_marginEnd="141dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+        <EditText
+            android:id="@+id/editAV"
+            android:layout_width="240dp"
+            android:layout_height="48dp"
+
+            android:ems="10"
+            android:hint="请输入AV号"
+            android:inputType="textPersonName"
+/>
+    </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/Thanks"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="162dp"
+            android:layout_marginTop="250dp"
+            android:layout_marginEnd="161dp"
+            android:text="参考资料"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout></ScrollView>
