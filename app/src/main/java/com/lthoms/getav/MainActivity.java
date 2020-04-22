@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
         Thanks=findViewById(R.id.Thanks);
         ButtonLeft=new Button(MainActivity.this);
 
-        buttonDown.setOnClickListener(new View.OnClickListener()
+        buttonDown.setOnClickListener(new View.OnClickListener()//BV转AV
         {
             @SuppressLint("ResourceType")
             @Override public void onClick(View v)
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity
                 try
                 {
                     String Input=TextBV.getText().toString();
-                    switch (Input.length())
+                    switch (Input.length()) //自动加入前缀
                     {
                         case 9:Input="001"+Input;break;
                         case 10:Input="00"+Input;break;
@@ -81,21 +81,20 @@ public class MainActivity extends AppCompatActivity
                     TextAV.setText("AV"+result);
                     TextAV.setSelection(TextAV.getText().length());
                     final Snackbar snackbar = Snackbar.make(getWindow().getDecorView(), "转换成功。", Snackbar.LENGTH_LONG);
-                    //添加新按钮
                     SnackbarAddView(snackbar,R.layout.twosnackbar,1);
-                    //设置新添加的按钮监听器
-                    SetAction(snackbar,R.id.cancel_btn,"打开",new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
+                    SetAction(snackbar,R.id.cancel_btn,"打开",new View.OnClickListener() 
+					{
+                        @Override public void onClick(View v) 
+						{
                             final Uri Link = Uri.parse("https://www.bilibili.com/video/"+TextAV.getText().toString().toLowerCase());
                             Intent I=new Intent(Intent.ACTION_VIEW,Link);
                             startActivity(I);
                             snackbar.dismiss();
                         }
                     });
-                    snackbar.setAction("复制", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
+                    snackbar.setAction("复制", new View.OnClickListener() 
+					{
+                        @Override public void onClick(View v) {
                             CopyAV.callOnClick();
                         }
 
@@ -110,7 +109,7 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
-        CopyAV.setOnClickListener(new View.OnClickListener()
+        CopyAV.setOnClickListener(new View.OnClickListener() //复制AV号
         {
             @Override public void onClick(View v)
             {myClipboard = (android.content.ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
@@ -123,10 +122,13 @@ public class MainActivity extends AppCompatActivity
                     Toast.makeText(getApplicationContext(), "已复制。", Toast.LENGTH_SHORT).show();
                 }
                 else
-                {try{
-                    ClipData c = myClipboard.getPrimaryClip();
-                    ClipData.Item item = c.getItemAt(0);
-                    TextAV.setText(item.getText().toString());}catch (Exception e){;}
+                {
+					try
+					{
+						ClipData c = myClipboard.getPrimaryClip();
+						ClipData.Item item = c.getItemAt(0);
+						TextAV.setText(item.getText().toString());
+					}catch (Exception e){;}
                 }
             }
         });
@@ -137,21 +139,23 @@ public class MainActivity extends AppCompatActivity
                 myClipboard = (android.content.ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
                 if(TextBV.length()>0)
                 {
-
-                ClipData c;
-                c= ClipData.newPlainText("text",TextBV.getText());
-                myClipboard.setPrimaryClip(c);
-                Toast.makeText(getApplicationContext(), "已复制。", Toast.LENGTH_SHORT).show();
+					ClipData c;
+					c= ClipData.newPlainText("text",TextBV.getText());
+					myClipboard.setPrimaryClip(c);
+					Toast.makeText(getApplicationContext(), "已复制。", Toast.LENGTH_SHORT).show();
                 }
                 else
-                {try{
-                    ClipData c = myClipboard.getPrimaryClip();
-                    ClipData.Item item = c.getItemAt(0);
-                    TextBV.setText(item.getText().toString());}catch (Exception e){;}
-                }
+                {
+					try
+					{
+						ClipData c = myClipboard.getPrimaryClip();
+						ClipData.Item item = c.getItemAt(0);
+						TextBV.setText(item.getText().toString());
+					}catch (Exception e){;}
+				}
             }
         });
-        buttonUp.setOnClickListener(new View.OnClickListener()
+        buttonUp.setOnClickListener(new View.OnClickListener() //AV转BV
         {
             @Override public void onClick(View v)
             {InputMethodManager imm = ( InputMethodManager ) v.getContext( ).getSystemService( Context.INPUT_METHOD_SERVICE );
@@ -165,21 +169,21 @@ public class MainActivity extends AppCompatActivity
                     TextBV.setText(GetBV(Number));
                     TextBV.setSelection(TextBV.getText().length());
                     final Snackbar snackbar = Snackbar.make(getWindow().getDecorView(), "转换成功。", Snackbar.LENGTH_LONG);
-                    //添加新按钮
                     SnackbarAddView(snackbar,R.layout.twosnackbar,1);
-                    //设置新添加的按钮监听器
-                    SetAction(snackbar,R.id.cancel_btn,"打开",new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
+                    SetAction(snackbar,R.id.cancel_btn,"打开",new View.OnClickListener() 
+					{
+                        @Override public void onClick(View v) 
+						{
                             final Uri Link = Uri.parse("https://www.bilibili.com/video/"+TextBV.getText());
                             Intent I=new Intent(Intent.ACTION_VIEW,Link);
                             startActivity(I);
                             snackbar.dismiss();
                         }
                     });
-                    snackbar.setAction("复制", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
+                    snackbar.setAction("复制", new View.OnClickListener() 
+					{
+                        @Override public void onClick(View v) 
+						{
                             CopyBV.callOnClick();
                         }
 
@@ -194,7 +198,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
         final AlertDialog.Builder ThanksDialog= new AlertDialog.Builder(this);
-        Thanks.setOnClickListener(new View.OnClickListener()
+        Thanks.setOnClickListener(new View.OnClickListener() //参考资料
         {
             @Override public void onClick(View v)
             {
@@ -241,7 +245,7 @@ else CopyAV.setText("复制");
 
     }
 
-    long GetAV(String BV)
+    long GetAV(String BV) //获取AV号核心算法
     {
         String Value = BV.substring(2);
         long num1= (long)((Table.indexOf(Value.charAt(0)))*Math.pow(58,6));
@@ -259,7 +263,7 @@ else CopyAV.setText("复制");
         long answer = minus ^ 177451812 ;
         return answer;
     }
-    String GetBV(Long AV)
+    String GetBV(Long AV) //获取BV号核心算法
     {
         AV=(AV^177451812 )+100618342136696320L;
         String[] BuildString=new String[10] ;
@@ -272,28 +276,21 @@ else CopyAV.setText("复制");
         return Final;
     }
     public static void SnackbarAddView(Snackbar snackbar, int layoutId, int index) {
-        View snackbarview = snackbar.getView();//获取snackbar的View(其实就是SnackbarLayout)
-        Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbarview;//将获取的View转换成SnackbarLayout
+        View snackbarview = snackbar.getView();
+        Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbarview;
         snackbarLayout.setForegroundGravity(Gravity.END);
-        View add_view = LayoutInflater.from(snackbarview.getContext()).inflate(layoutId, null);//加载布局文件新建View
-        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);//设置新建布局参数
-        p.gravity = Gravity.CENTER_VERTICAL;//设置新建布局在Snackbar内垂直居中显示
+        View add_view = LayoutInflater.from(snackbarview.getContext()).inflate(layoutId, null);
+        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        p.gravity = Gravity.CENTER_VERTICAL;
         p.gravity=Gravity.END;
-        snackbarLayout.addView(add_view, index, p);//将新建布局添加进snackbarLayout相应位置
+        snackbarLayout.addView(add_view, index, p);
     }
     public static void SetAction(Snackbar snackbar, int btn_id, String action_string, View.OnClickListener onClickListener) {
-        View view = snackbar.getView();//获取Snackbar的view
+        View view = snackbar.getView();
         if (view != null) {
-            //为添加的按钮设置监听器
             ((Button)view.findViewById(btn_id)).setText(action_string);
             (view.findViewById(btn_id)).setOnClickListener(onClickListener);
         }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
     }
 }
 
